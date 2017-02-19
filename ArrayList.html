@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	function List(){
+		this.listSize=0;
+		this.pos=0;
+		this.dataStore=[];
+		this.clear=clear;
+		this.find=find;
+		this.toString=toString;
+		this.insert=insert;
+		this.append=append;
+	}
+    function clear(){
+    	delete this.dataStore;
+    	this.dataStore=[];
+    	this.pos=this.currPos=0;
+    }
+    function append(element){
+    	this.dataStore[this.listSize++].push(element);
+    }
+
+    function remove(element){
+
+    }
+    function insert(element,after){
+    	var foundAt=this.find(after);
+    	if(foundAt >-1){
+    		this.dataStore.splice(foundAt,0,element)
+    	}
+    }
+    function find(element){
+    	for(var i=0;i<this.dataStore.length;i++){
+    		if(element==this.dataStore[i]){
+    			return i;
+    		}
+    		return -1;
+    	}
+    }
+
+	</script>
+</body>
+</html>
