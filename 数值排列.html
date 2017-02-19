@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    function Queue() {
+        this.dataStore = [];
+        this.enqueue = enqueue;
+        this.dequeue = dequeue;
+        this.front = front;
+        this.back = back;
+        this.toString = toString;
+        this.empty = isEmpty;
+    }
+
+    function enqueue(element) {
+        this.dataStore.push(element);
+    }
+
+    function dequeue() {
+        return this.dataStore.shift();
+    }
+
+    function front() {
+        return this.dataStore[0];
+    }
+
+    function back() {
+        return this.dataStore[this.dataStore.length - 1];
+    }
+
+    function toString() {
+        var retStr = '';
+        for (var i = 0; i < this.dataStore.length; i++) {
+            retStr += this.dataStore[i] + "\n";
+        }
+        return retStr;
+    }
+
+    function isEmpty() {
+        if (this.dataStore.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    function distribute(nums, queues, n, digit) {
+        for (var i = 0; i < n; ++i) {
+            if (digit == 1) {//个位数 queues[6]
+                queues[nums[i] % 10].enqueue(nums[i]);
+            } else {
+                queues[Math.floor(nums[i] / 10)].enqueue(nums[i]);
+            }
+        }
+    }
+
+    function collect(queues, nums) {
+        var i = 0;
+        for (var digit = 0; digit < 10; ++digit) {
+            while (!queues[digit].empty()) {
+                nums[i++] = queues[digit].dequeue();
+            }
+        }
+    }
+
+    function dispArray(arr) {
+        for (var i = 0; i < arr.length; ++i) {
+            console.dir(arr[i] + " ");
+        }
+    }
+
+    var queues = [];
+    for (var i = 0; i < 10; ++i) {
+        queues[i] = new Queue();
+    }
+    var nums = [];
+    for (var i = 0; i < 10; ++i) {
+        nums[i] = Math.floor(Math.floor(Math.random() * 101));
+    }
+    console.dir("Before radix sort: ");
+    dispArray(nums);
+    distribute(nums, queues, 10, 1);
+    collect(queues, nums);
+    console.dir(nums);
+    console.dir("\n\nAfter radix sort: ");
+    
+    </script>
+</body>
+
+</html>

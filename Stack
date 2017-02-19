@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+	function Stack(){
+		this.dataStore=[];
+		this.top=0;
+		this.push=push;
+		this.pop=pop;
+		this.peek=peek;
+		this.clear=clear;
+		this.length=length;
+	}
+
+	function push(element){
+		this.dataStore[this.top++]=element;
+	}
+	//返回栈顶元素
+	function pop(){
+		return this.dataStore[--this.top];
+	}
+	function peek(){
+		return  this.dataStore[this.top-1];
+	}
+	function length(){
+		return this.top;
+	}
+	function clear(){
+		this.top=0;
+	}
+
+	// var s=new Stack();
+	// s.push("yyh1");
+	// s.push("yyh2");
+	// s.push("yyh3");
+
+	// console.dir(s.length())
+	// console.dir(s.peek())
+
+	// var poped=s.pop();
+	// console.dir(poped);
+	var objStack=new Stack();
+	var str="2.3 + 23 / 12 + (3.14159×0.24";
+		for(var i=0;i<str.length;i++){
+			objStack.push(str[i])
+		}
+	console.dir(objStack.dataStore)
+	</script>
+</body>
+</html>
